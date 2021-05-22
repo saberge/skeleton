@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skeletonAnimation</title>
+    <style>
+        body {
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="pixi.min.js"></script>
+    <script src="dragonBones.min.js"></script>
+    <script src="dragonBonesPixi.min.js"></script>
+    <script src="skeleton.js"></script>
+    <script>
+        //Aliases
+        let Application = PIXI.Application,
+            Container = PIXI.Container,
+            loader = PIXI.loader,
+            resources = PIXI.loader.resources,
+            TextureCache = PIXI.utils.TextureCache,
+            Sprite = PIXI.Sprite,
+            Rectangle = PIXI.Rectangle;
+
+        //Create a Pixi Application
+        let app = new PIXI.Application({
+            width: window.innerWidth,
+            height: window.innerHeight,
+            antialiasing: true,
+            transparent: true,
+            resolution: 1
+        });
+
+        //Add the canvas that Pixi automatically created for you to the HTML document
+        document.body.appendChild(app.view);
+        //预加载资源
+        loader.reset();
+        loader.add("dragonBonesData", "kaiping_ske.json")
+            .add("textureData", "kaiping_tex.json")
+            .add("texture", "kaiping_tex.png")
+            .load()
+            .once("complete", onComplete, this);
+        //加载成功
+        function onComplete(target, resource) {
+            var textureImg = resource["texture"].texture;
+            var textureData = resource["textureData"].data;
+            var skeletonData = resource["dragonBonesData"].data;
+
+            //骨骼动画实现
+            var dragonbonesFactory = new dragonBones.PixiFactory(); //新建骨骼动画制作工厂
+            dragonbonesFactory.parseDragonBonesData(skeletonData); //解析骨骼数据
+            dragonbonesFactory.parseTextureAtlasData(textureData, textureImg); //解析纹理数据
+
+            var armatureDisplay = dragonbonesFactory.buildArmatureDisplay(skeletonData.armature[0].name); //构建骨骼动画
+            armatureDisplay.animation.play('yici', 1); //执行动画
+            armatureDisplay.x = window.innerWidth / 2.0;
+            armatureDisplay.y = window.innerHeight / 2.0;
+            armatureDisplay.scale.set(2, 2);
+            app.stage.addChild(armatureDisplay)
+
+            armatureDisplay.armature.addEventListener("complete", function (e) {
+                window.globle.sendMsg('animationCompleted', {}, function (data) {
+                    console.log("JSCallBack")
+                })
+            }, armatureDisplay.armature)
+        }
+    </script>
+</body>
+
+</html>

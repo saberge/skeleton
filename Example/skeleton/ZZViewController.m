@@ -7,6 +7,7 @@
 //
 
 #import "ZZViewController.h"
+#import <skeleton/ZZSkeletonPlayer.h>
 
 @interface ZZViewController ()
 
@@ -20,10 +21,11 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)onBtnClicked:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [ZZSkeletonPlayer playerSkeletonInContainer:self.view completedBlock:^{
+            
+    }];
 }
 
 @end

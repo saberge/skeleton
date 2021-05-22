@@ -1,16 +1,27 @@
 PODS:
-  - skeleton (0.1.0)
+  - Masonry (1.1.0)
+  - skeleton (0.1.0):
+    - Masonry
+    - WebViewJavascriptBridge
+  - WebViewJavascriptBridge (6.0.3)
 
 DEPENDENCIES:
   - skeleton (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+    - WebViewJavascriptBridge
 
 EXTERNAL SOURCES:
   skeleton:
     :path: "../"
 
 SPEC CHECKSUMS:
-  skeleton: 3ef05dce02d99759f28fe7c7cb806074907074cc
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  skeleton: 5a52e63c147b48a8316a117cafe9fa499ae1fa79
+  WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
 
-PODFILE CHECKSUM: 23bd5e408d81d0ea977b76bcef5febde9a62d87f
+PODFILE CHECKSUM: 4de375868adae0eca5a088a35cf9aacd25b0bc43
 
 COCOAPODS: 1.8.4

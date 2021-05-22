@@ -32,11 +32,12 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'skeleton/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'skeleton' => ['skeleton/Assets/*.png']
-  # }
+   s.resource_bundles = {
+     'skeleton' => ['skeleton/Assets/*']
+   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+    s.dependency 'Masonry'
+    s.dependency 'WebViewJavascriptBridge'
 end
