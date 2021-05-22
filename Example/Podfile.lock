@@ -1,0 +1,16 @@
+PODS:
+  - skeleton (0.1.0)
+
+DEPENDENCIES:
+  - skeleton (from `../`)
+
+EXTERNAL SOURCES:
+  skeleton:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  skeleton: 3ef05dce02d99759f28fe7c7cb806074907074cc
+
+PODFILE CHECKSUM: 23bd5e408d81d0ea977b76bcef5febde9a62d87f
+
+COCOAPODS: 1.8.4
